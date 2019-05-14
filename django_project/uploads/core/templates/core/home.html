@@ -16,6 +16,8 @@
       <li>
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
         <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+        <br>
+        <img src="{{ obj.document.url }}" alt="img from db">
       </li>
     {% endfor %}
   </ul>
