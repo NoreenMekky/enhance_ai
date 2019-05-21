@@ -7,6 +7,12 @@ from uploads.core.forms import DocumentForm
 from uploads.core import super_resolve
 from uploads.core import model
 
+from django.contrib.auth.decorators import login_required
+from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib import messages
+
+
+
 
 def home(request):
     documents = Document.objects.all()
@@ -34,15 +40,35 @@ def simple_upload(request):
 
     return render(request, 'core/simple_upload.html')
 
-
+@login_required
 def model_form_upload(request):
+    author = request.user.username
+    print(author)
+    
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
+        form
+        # u_form = UserUpdateForm(request.POST, instance=request.user)
+        print(request.user.profile)
+        # if form.is_valid():
         if form.is_valid():
-            form.save()
+            print("hooray, it is valid!")
+            # form.save()
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            print(form.errors)
+            messages.success(request, f'Your image has been uploaded!')
             return redirect('home')
     else:
-        form = DocumentForm()
+        print("is not valid")
+        # print(form.errors)
+        # u_form = UserUpdateForm(instance=request.user)
+        form = DocumentForm(instance=request.user.profile)
+    
+    context = {
+        'form': form
+    }
     return render(request, 'core/model_form_upload.html', {
         'form': form
     })

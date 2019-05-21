@@ -18,6 +18,7 @@
         <small>(Uploaded at: {{ obj.uploaded_at }})</small>
         <br>
         <img src="{{ obj.document.url }}" alt="img from db">
+        <p>User: {{ request.user.username }}</p>
       </li>
     {% endfor %}
   </ul>
