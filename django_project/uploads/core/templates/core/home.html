@@ -17,6 +17,10 @@
         <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
         <small>(Uploaded at: {{ obj.uploaded_at }})</small>
         <br>
+        <small>(profile_user_id: {{ request.user.id }})</small>
+        <br>
+        <small>(image_user_id: {{ obj.user_id }})</small>
+        <br>
         <img src="{{ obj.document.url }}" alt="img from db">
         <p>User: {{ request.user.username }}</p>
       </li>
