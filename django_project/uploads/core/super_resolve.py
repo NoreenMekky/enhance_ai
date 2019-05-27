@@ -54,7 +54,7 @@ def predict(img_path, output_image_name):
     model = Net(upscale_factor= 2)
 
 
-    model.load_state_dict(torch.load(os.path.join(script_dir, "model_epoch_3.pth")))
+    model.load_state_dict(torch.load(os.path.join(script_dir, "model_epoch_98.pth")))
 
 
     img_to_tensor = ToTensor()
