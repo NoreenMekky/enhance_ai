@@ -15,7 +15,7 @@ from django.contrib import messages
 
 
 def home(request):
-    documents = Document.objects.all()
+    documents = Document.objects.all().filter(user=request.user.id)
     return render(request, 'core/home.html', { 'documents': documents })
 
 
@@ -53,7 +53,7 @@ def model_form_upload(request):
         # if form.is_valid():
         if form.is_valid():
             print("hooray, it is valid!")
-            # form.save()
+
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
@@ -65,6 +65,8 @@ def model_form_upload(request):
         # print(form.errors)
         # u_form = UserUpdateForm(instance=request.user)
         form = DocumentForm(instance=request.user.profile)
+
+    
     
     context = {
         'form': form
