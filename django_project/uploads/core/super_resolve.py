@@ -40,9 +40,9 @@ print("I'm in super_resolve.py")
 
 def predict(img_path, output_image_name):
 
-    print("dir list")
-    arr = os.listdir("media")
-    print(arr)
+    # print("dir list")
+    # arr = os.listdir("media")
+    # print(arr)
 
 
     

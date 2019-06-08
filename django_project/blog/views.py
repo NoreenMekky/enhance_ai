@@ -26,15 +26,21 @@ def home(request):
         for i in range (1,100):
             print(i)
 
-        return render(request, 'blog/home.html', {
+        return render(request, 'blog/index.html', {
             'uploaded_file_url': uploaded_file_url,
             'super_resolved_file_url': sr_image_url
         })
-    return render(request, 'blog/home.html', context)                                                                                                                                                                                                                                                                                  
+    return render(request, 'blog/index.html', context)                                                                                                                                                                                                                                                                                  
 
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+def index(request):
+    return render(request, 'blog/index.html', {'title': 'Index'})
+
+
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:

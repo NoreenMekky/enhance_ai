@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/ui_base.html' %}
 
 {% block content %}
   <form method="post" enctype="multipart/form-data">
@@ -6,6 +6,45 @@
     {{ form.as_p }}
     <button type="submit">Upload</button>
   </form>
+  hiiiiiiiiiiiiiiiiiii
 
   <p><a href="{% url 'home' %}">Return to home</a></p>
+
+  <section id="three" class="wrapper style2">
+    <div class="inner">
+            <div class="grid-style">
+                    <div>
+                        <div class="box">
+                            <div class="image fit">
+                                <img src="{{ super_resolved_file_url }}" alt="" />
+                                <h1>High resolution image</h1>
+
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_twitter"></a>
+                                <a class="a2a_button_email"></a>
+                                <a class="a2a_button_pinterest"></a>
+                             </div>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
+                            <h1></h1>
+                             <a href = "" class="button">Download</a>    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="box">
+                            <div class="image fit">
+                                <img src="{{ uploaded_file_url }}" alt="" />
+                                <h1>Low resolution image</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    </div>
+</section>
+
 {% endblock %}
+

@@ -1,21 +1,55 @@
-{% extends "blog/base.html" %}
+
+{% extends "blog/login_base.html" %}
+{% load staticfiles%}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-            </small>
-        </div>
-    </div>
-{% endblock content %}
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url({% static 'login/images/bg-01.jpeg' %});" >
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+					<span class="login100-form-title p-b-49">
+						Login
+					</span>
+
+					<form class="login100-form validate-form" method="POST">
+							{% csrf_token %}
+							<fieldset class="form-group">
+								{{ form|crispy }}
+							</fieldset>
+							<!-- <div class="form-group">
+								<button class="btn btn-outline-info" type="submit">Login</button>
+							</div> -->
+
+
+
+
+							<div class="container-login100-form-btn">
+
+									<div class="wrap-login100-form-btn">
+										<div class="login100-form-bgbtn"></div>
+										<button class="login100-form-btn" type="submit">Login</button>
+									</div>
+						</form>
+					
+					</div>
+
+
+
+					<div class="flex-col-c p-t-155">
+						<span class="txt1 p-b-17">
+							Need An Account?
+						</span>
+
+						<a href="{% url 'register' %}" class="txt2">
+							Sign Up Now
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	{% endblock content %}
+

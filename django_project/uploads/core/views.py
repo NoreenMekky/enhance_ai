@@ -29,6 +29,8 @@ def simple_upload(request):
         print("image name is :", filename)
         print("image path is in url:", uploaded_file_url)
         super_resolve.predict('media/'+filename, 'out_'+filename)
+        # super_resolve.predict('media/documents/1383.png', 'out_'+filename)
+
 
         for i in range (1,100):
             print(i)
@@ -57,9 +59,32 @@ def model_form_upload(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
+
+            ###############
+
+            img = request.FILES['document']
+            name = img.name
+            print("image name: ", name)
+            sr_image_url = 'media/sr_media/out_'+name
+            sr_image_url_webView = '/media/sr_media/out_'+name
+            uploaded_file_url = '/media/documents/'+name
+            super_resolve.predict('media/documents/'+name,  sr_image_url)
+
+
+           
+
+
+
+            ###############
+
             print(form.errors)
             messages.success(request, f'Your image has been uploaded!')
-            return redirect('home')
+            # return redirect('home')
+            return render(request, 'core/model_form_upload.html', {
+            'uploaded_file_url': uploaded_file_url,
+            'super_resolved_file_url': sr_image_url_webView
+        })
+
     else:
         print("is not valid")
         # print(form.errors)
@@ -74,3 +99,8 @@ def model_form_upload(request):
     return render(request, 'core/model_form_upload.html', {
         'form': form
     })
+
+
+
+def upload(request):
+    return render(request, 'blog/Untitled-1.html', {'title': 'Upload'})
